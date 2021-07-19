@@ -12,6 +12,8 @@ declare(strict_types=1);
 
 namespace Vokuro\Controllers;
 
+use Vokuro\Models\Category;
+
 /**
  * Display the default index page.
  */

@@ -4,36 +4,115 @@
     <h1 class="display-4">Welcome!</h1>
     <p class="lead">This is a website secured by Phalcon Framework</p>
     <hr class="my-4">
-    {{ link_to('session/signup', '<i class="icon-ok icon-white"></i> Create an Account', 'class': 'btn btn-primary btn-large') }}
 </header>
 
 <div class="row">
-    <div class="col-md-12 col-lg-4">
-        <div class="card">
-            <div class="card-body">
-                <h3>Awesome Section</h3>
-                <p>Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                <p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Donec sed odio dui.</p>
+          <!-- CONTAINER -->
+    <article class="container products">
+        <!-- row -->
+        <div class="row text-center">
+            <div class="col-md-3 col-sm-6 product">
+                <div class="product-img">
+                    <a href="product.html">
+                        <img src="img/cart-item-1.jpg" alt="">
+                    </a>
+                    <a href="catalog_grid.html" class="btn btn-primary add-cart">Add to Cart</a>
+                </div>
+                <h6><a href="product.html">Contemporary chair</a></h6>
+                <span class="price">
+                    <span class="amount">$ 159,00</span>
+                </span>
+            </div>
+            <div class="col-md-3 col-sm-6 product">
+                <div class="product-img">
+                    <a href="product.html">
+                        <img src="img/cart-item-2.jpg" alt="">
+                    </a>
+                    <a href="catalog_grid.html" class="btn btn-primary add-cart">Add to Cart</a>
+                </div>
+                <h6><a href="product.html">Farmhouse chair</a></h6>
+                <span class="price">
+                        <span class="amount">$ 47,50</span>
+                </span>
+            </div>
+            <div class="col-md-3 col-sm-6 product">
+                <div class="product-img">
+                    <a href="product.html">
+                        <img src="img/cart-item-3.jpg" alt="">
+                    </a>
+                    <a href="catalog_grid.html" class="btn btn-primary add-cart">Add to Cart</a>
+                </div>
+                {{ link_to('session/login', "&larr; Категория") }}
+                <h6><a href="product.html">Outdoor chair</a></h6>
+                <span class="price">
+                    <span class="amount">$ 89,99</span>
+                </span>
+            </div>
+            <div class="col-md-3 col-sm-6 product">
+                <div class="product-img">
+                    <a href="product.html">
+                        <img src="img/cart-item-4.jpg" alt="">
+                    </a>
+                    <a href="catalog_grid.html" class="btn btn-primary add-cart">Add to Cart</a>
+                </div>
+                <h6><a href="product.html">Classic style chair</a></h6>
+                <span class="price">
+                    <span class="amount">$ 59,00</span>
+                </span>
             </div>
         </div>
-    </div>
+        <!-- /.row -->
 
-    <div class="col-md-12 col-lg-4">
-        <h3>Important Stuff</h3>
-        <p>Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-        <p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Donec sed odio dui.</p>
-    </div>
-
-    <div class="col-md-12 col-lg-4">
-        <h3>Example addresses</h3>
-        <address>
-            <strong>Vökuró, Inc.</strong><br>
-            456 Infinite Loop, Suite 101<br>
-            <abbr title="Phone">P:</abbr>&nbsp;<a href="tel:+11234567890" title="Call us">(123) 456-7890</a>
-        </address>
-        <address>
-            <strong>Contacts</strong><br>
-            <a href="mailto:team@phalcon.io?subject=Vökuró feedback" title="Send feedback">team@phalcon.io</a>
-        </address>
-    </div>
+        <!-- row -->
+        <div class="row text-center">
+            <div class="col-md-3 col-sm-6 product">
+                <div class="product-img">
+                    <a href="product.html">
+                        <img src="img/cart-item-5.jpg" alt="">
+                    </a>
+                    <a href="catalog_grid.html" class="btn btn-primary add-cart">Add to Cart</a>
+                </div>
+                <h6><a href="product.html">Lloyd Loom chair</a></h6>
+                <span class="price">
+                    <span class="amount">$ 159,00</span>
+                </span>
+            </div>
+            <div class="col-md-3 col-sm-6 product">
+                <div class="product-img">
+                    <a href="product.html">
+                        <img src="img/cart-item-6.jpg" alt="">
+                    </a>
+                    <a href="catalog_grid.html" class="btn btn-primary add-cart">Add to Cart</a>
+                </div>
+                <h6><a href="product.html">Plastic chair</a></h6>
+                <span class="price">
+                    <span class="amount">$ 159,00</span>
+                </span>
+            </div>
+            <div class="col-md-3 col-sm-6 product">
+                <div class="product-img">
+                    <a href="product.html">
+                        <img src="img/cart-item-7.jpg" alt="">
+                    </a>
+                    <a href="catalog_grid.html" class="btn btn-primary add-cart">Add to Cart</a>
+                </div>
+                <h6><a href="product.html">Contemporary Wood chair</a></h6>
+                <span class="price">
+                    <span class="amount">$ 340,00</span>
+                </span>
+            </div>
+            <div class="col-md-3 col-sm-6 product">
+                <div class="product-img">
+                    <a href="product.html">
+                        <img src="img/cart-item-8.jpg" alt="">
+                    </a>
+                    <a href="catalog_grid.html" class="btn btn-primary add-cart">Add to Cart</a>
+                </div>
+                <h6><a href="product.html">Contemporary chair</a></h6>
+                <span class="price">
+                    <span class="amount">$ 590,00</span>
+                </span>
+            </div>
+        </div>
+        <!-- /.row -->
 </div>

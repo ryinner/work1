@@ -25,3 +25,13 @@ $router->add('/reset-password/{code}/{email}', [
     'controller' => 'user_control',
     'action'     => 'resetPassword',
 ]);
+
+// $router->add('/categories', [
+//     'controller' => 'categories',
+//     'action'     => 'index'
+// ]);
+
+// $router->add('/categories/{id}',[
+//     'controller' => 'categories',
+//     'action'     => ''
+// ]);
