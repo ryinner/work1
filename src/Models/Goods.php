@@ -21,11 +21,12 @@ class Goods extends Model
     public $title_goods;
     public $price_goods;
     public $photo_goods;
+    public $desrp_goods;
     public $id_cat_goods;
 
     public function initialize() {
-        $this->belongsTo('id_cat_goods', Categories::class, 'id_goods', [
-            'alias' => 'category'
+        $this->belongsTo('id_cat_goods', Categories::class, 'id', [
+            'alias' => 'categories'
         ]);
     }
 }

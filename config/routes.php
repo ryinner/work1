@@ -16,22 +16,13 @@ use Phalcon\Mvc\Router;
  * @var $router Router
  */
 
-$router->add('/confirm/{code}/{email}', [
-    'controller' => 'user_control',
-    'action'     => 'confirmEmail',
+
+$router->add('/categories/{id}',[
+    'controller' => 'categories',
+    'action'     => 'goods'
 ]);
 
-$router->add('/reset-password/{code}/{email}', [
-    'controller' => 'user_control',
-    'action'     => 'resetPassword',
+$router->add('/categories/good/{id}',[
+    'controller' => 'categories',
+    'action'     => 'good'
 ]);
-
-// $router->add('/categories', [
-//     'controller' => 'categories',
-//     'action'     => 'index'
-// ]);
-
-// $router->add('/categories/{id}',[
-//     'controller' => 'categories',
-//     'action'     => ''
-// ]);

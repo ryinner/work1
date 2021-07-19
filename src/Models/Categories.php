@@ -22,7 +22,7 @@ class Categories extends Model
 
     public function initialize() {
         $this->HasMany('id', Goods::class, 'id_cat_goods', [
-            'alias' => 'goods'
+            'alias' => 'goods',
         ]);
     }
 }
