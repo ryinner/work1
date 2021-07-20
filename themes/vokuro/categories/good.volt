@@ -3,32 +3,39 @@
 <div class="row">
     <article class="container type-product">
             <div class="justify-content">
-            {% for item in good %}
             <div class="row text-center">
                 <div class="col-sm-6 magnific-wrap">
                     <div class="img-medium text-center">
                         <div class="medium-slider">
-                            <a href="#" title="Farmhouse chair" class="magnific"><img src="../../{{item.photo_goods}}" alt=""></a>
+                            <a href="#" title="Farmhouse chair" class="magnific"><img src="../../{{good.photo_goods}}" alt=""></a>
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-6 m-center">
-                    <h3>{{ item.title_goods }}</h3>
+                    <h3>{{ good.title_goods }}</h3>
                     <span class="price">
-                        <span class="amount">$ {{ item.price_goods }}</span>
+                        <span class="amount">$ {{ good.price_goods }}</span>
                     </span>
-                    <p>{{item.desrp_goods}}</p>
+                    <p>{{good.desrp_goods}}</p>
+                    <form method="POST" action="/categories/good/addtocart/{{good.id_goods}}">
+                    <div class="add-cart">
+                        <input type="number" id="number" class="form-control text-center" value="1" min="1" max="{{good.count_goods}}">
+                        <input type="hidden" id="title" value="{{good.title_goods}}">
+                        <p></p>
+                        <button type="submit" id="click" class="btn btn-primary btn-thn add-cart">Add to cart</button>
+                    </div>
                     <table class="table cart-total">
-                        {% for row in item.categories %}
-                        {% endfor %}
                             <tr>
                                 <th>Category:</th>
-                                <td>{{row.cat_name}}</td>
+                                <td>{{ cat.cat_name }}</td> 
+                            </tr>
+                            <tr>
+                                <th>Count:</th>
+                                <td>{{good.count_goods}}</td>
                             </tr>
                     </table>
                 </div>
             </div>    
-        {% endfor %}
         </div>
     </article>
 </div>
