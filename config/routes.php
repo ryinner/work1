@@ -31,3 +31,8 @@ $router->add('/categories/good/addtocart/{id}', [
     'controller' => 'cart',
     'action'     => 'addtocart'
 ]);
+
+// $router->add('/cart', [
+//     'controller' => 'cart',
+//     'action'     => 'index'
+// ]);

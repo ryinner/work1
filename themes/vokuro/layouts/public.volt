@@ -1,6 +1,7 @@
 {%- set menus = [
     'Home': 'index',
-    'About': 'about'
+    'About': 'about',
+    'Cart': 'cart'
 ] -%}
 <div class="container">
 <nav class="navbar mainmenu">
