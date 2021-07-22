@@ -30,7 +30,10 @@
         "ext-phalcon": "~5.0.0",
         "robmorgan/phinx": "^0.11.1",
         "swiftmailer/swiftmailer": "^6.2",
-        "vlucas/phpdotenv": "^3.6"
+        "vlucas/phpdotenv": "^3.6",
+        "unodepiera/phalcon_cart": "dev-master",
+        "stnc/shopping-cart": "^2.1",
+        "sinbadxiii/phalcon-cart": "^1.2"
     },
     "require-dev": {
         "codeception/codeception": "^4.1.6",

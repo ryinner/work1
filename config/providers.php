@@ -14,6 +14,7 @@ use Vokuro\Providers\AclProvider;
 use Vokuro\Providers\AuthProvider;
 use Vokuro\Providers\ConfigProvider;
 use Vokuro\Providers\CryptProvider;
+use Vokuro\Providers\CartProvider;
 use Vokuro\Providers\DbProvider;
 use Vokuro\Providers\DispatcherProvider;
 use Vokuro\Providers\FlashProvider;
@@ -27,6 +28,7 @@ use Vokuro\Providers\SessionProvider;
 use Vokuro\Providers\UrlProvider;
 use Vokuro\Providers\ViewProvider;
 use Vokuro\Providers\AssetsProvider;
+
 
 return [
     AclProvider::class,
@@ -46,4 +48,5 @@ return [
     UrlProvider::class,
     ViewProvider::class,
     AssetsProvider::class,
+    CartProvider::class
 ];

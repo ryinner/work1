@@ -32,7 +32,22 @@ $router->add('/categories/good/addtocart/{id}', [
     'action'     => 'addtocart'
 ]);
 
-// $router->add('/cart', [
-//     'controller' => 'cart',
-//     'action'     => 'index'
-// ]);
+$router->add('/delete/{rowid}', [
+    'controller' => 'cart',
+    'action'     => 'deletefromcart'
+]);
+
+$router->add('/clear', [
+    'controller' => 'cart',
+    'action'     => 'clearcart'
+]); 
+
+$router->add('/makeorder',[
+    'controller' => 'orders',
+    'action'     => 'makeorder'
+]);
+
+$router->add('/cart/get',[
+    'controller' => 'cart',
+    'action'     => 'get' 
+]);
