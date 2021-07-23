@@ -33,9 +33,15 @@
                                 <td>{{ cat.cat_name }}</td> 
                             </tr>
                             <tr>
-                                <th>Count:</th>
-                                <td>{{good.count_goods}}</td>
+                                <th>Brand:</th>
+                                <td>{{brand.name_brands}}</td>
                             </tr>
+                            {% for item in good.parametrsgoods %}
+                                 <tr>
+                                    <th>{{item.parametrs.name_par}}:</th>
+                                    <td>{{item.value_pg}}</td>
+                                </tr>
+                            {% endfor %}
                     </table>
                 </div>
             </div>    

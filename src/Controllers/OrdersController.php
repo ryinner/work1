@@ -12,8 +12,12 @@ declare(strict_types=1);
 
 namespace Vokuro\Controllers;
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
 use Vokuro\Models\Goodsinorders;
 use Vokuro\Models\Orders;
+use Vokuro\Plugins\Mail\Mail;
 
 class OrdersController extends ControllerBase
 {
@@ -42,20 +46,63 @@ class OrdersController extends ControllerBase
             $order_id = Orders::maximum([
                 "column" => "id_orders"
             ]);
-    
+            $to = $adress;
+            $subject = "Vokuro store";
+            $message = "Hello, $name. Your order is:<br>";
             foreach($items as $value) {
                 $goods_id = $value->id;
                 $count = $value->qty;
+                $goods_name = $value->name;
+                $goods_price = $value->price*$count;
                 $goodsinorders = new Goodsinorders([
                     'goods_id_gio'    =>  $goods_id,
                     'order_id_gio'    =>  $order_id,
                     'count_goods_gio' =>  $count
                 ]);
+                $message .= "$count $goods_name for $goods_price $<br>";
                 $goodsinorders->save();
-                $this->response->redirect('/check');
             }
-    
+            // $message = wordwrap($message, 70, "\r\n");
+            var_dump($message);
+            $mail = new PHPMailer(true);
+
+            try {
+                //Server settings
+                $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+                $mail->isSMTP();                                            //Send using SMTP
+                $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+                $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+                $mail->Username   = 'smthgood52@gmail.com';                     //SMTP username
+                $mail->Password   = '7ssgTwFT8AyJ5bi';                               //SMTP password
+                $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+                $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+
+                //Recipients
+                $mail->setFrom('from@example.com', 'Mailer');
+                $mail->addAddress($adress, $name);     //Add a recipient
+                // $mail->addAddress('ellen@example.com');               //Name is optional
+                $mail->addReplyTo('info@example.com', 'Information');
+                $mail->addCC($adress);
+                // $mail->addBCC('bcc@example.com');
+
+                //Attachments
+                // $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
+                // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
+
+                //Content
+                $mail->isHTML(true);                                  //Set email format to HTML
+                $mail->Subject =  $subject;
+                $mail->Body    =  $message;
+                $mail->AltBody = 'Thanks';
+
+                $mail->send();
+                echo 'Message has been sent';
+            } catch (Exception $e) {
+                echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+            }
+
             $this->cart->destroy();
+            // $this->response->redirect('/check');
         }
 
     }

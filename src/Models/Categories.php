@@ -14,6 +14,7 @@ namespace Vokuro\Models;
 
 use Phalcon\Mvc\Model;
 use Vokuro\Models\Goods;
+use Vokuro\Models\Parametrs;
 
 class Categories extends Model
 {
@@ -23,6 +24,10 @@ class Categories extends Model
     public function initialize() {
         $this->HasMany('id', Goods::class, 'id_cat_goods', [
             'alias' => 'goods',
+        ]);
+
+        $this->hasMany('id',Parametrs::class,'id_cat_param',[
+            'alias' =>  'parametrs'
         ]);
     }
 }

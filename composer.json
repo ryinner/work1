@@ -33,7 +33,8 @@
         "vlucas/phpdotenv": "^3.6",
         "unodepiera/phalcon_cart": "dev-master",
         "stnc/shopping-cart": "^2.1",
-        "sinbadxiii/phalcon-cart": "^1.2"
+        "sinbadxiii/phalcon-cart": "^1.2",
+        "phpmailer/phpmailer": "^6.5"
     },
     "require-dev": {
         "codeception/codeception": "^4.1.6",

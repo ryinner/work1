@@ -5,6 +5,7 @@ namespace Vokuro\Controllers;
 
 use Vokuro\Models\Categories;
 use Vokuro\Models\Goods;
+use Vokuro\Models\Parametrsgoods;
 
 class CategoriesController extends ControllerBase
 {
@@ -25,5 +26,6 @@ class CategoriesController extends ControllerBase
         $this->view->setTemplateBefore('public');
         $this->view->good = Goods::findFirst($id);
         $this->view->cat = Goods::findFirst($id)->categories;
+        $this->view->brand = Goods::findFirst($id)->brands;
     }
 }
