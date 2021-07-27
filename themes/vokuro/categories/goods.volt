@@ -12,9 +12,9 @@
                                 <a href="good/{{ item.id_goods }}" class="btn btn-primary add-cart">Посмотреть</a>
                             </div>
                             <h6><a href="good/{{ item.id_goods }}">{{ item.title_goods }}</a></h6>
-                            <span class="price">
+                            {# <span class="price">
                                 <span class="amount">{{ item.price_goods }} $</span>
-                            </span>
+                            </span> #}
                         </div>
                 {% endfor %}
             {% endfor %}

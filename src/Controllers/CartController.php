@@ -11,11 +11,13 @@ class CartController extends ControllerBase
         $number = $this->request->getPost('number');
         $title = $this->request->getPost('title');
         $price = $this->request->getPost('price');
-        $this->cart->add($id,$title,$number,$price);
+        $options = $this->request->getPost('options');
+        print_r([$options]);
+        $this->cart->add($id,$title,$number,$price,[$options]);
         // return $this->dispatcher->forward([
         //     'action' => 'index',
         // ]);
-        $this->response->redirect('/cart');
+        // $this->response->redirect('/cart');
     }
 
     public function indexAction()

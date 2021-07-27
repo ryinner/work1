@@ -7,6 +7,7 @@ use Phalcon\Mvc\Model;
 use Vokuro\Models\Categories;
 use Vokuro\Models\Parametrsgoods;
 use Vokuro\Models\Brands;
+use Vokuro\Models\Prices;
 
 class Goods extends Model
 {
@@ -24,12 +25,16 @@ class Goods extends Model
             'alias' => 'categories'
         ]);
 
+        $this->belongsTo('id_brands_goods', Brands::class,'id_brands',[
+            'alias' =>  'brands'
+        ]);
+
         $this->hasMany('id_goods', Parametrsgoods::class, 'id_good_pg',[
             'alias' =>  'parametrsgoods'
         ]);
 
-        $this->belongsTo('id_brands_goods', Brands::class,'id_brands',[
-            'alias' =>  'brands'
+        $this->hasMany('id_goods', Prices::class, 'id_good_prices',[
+            'alias' => 'prices'
         ]);
     }
 }

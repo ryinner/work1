@@ -25,7 +25,7 @@ function success(data) {
     obj = Object.entries(obj);
     // obj.forEach(([key, value]) => console.log(`${key}: ${value['name']}`,`${key}: ${value['id']}`,`${key}: ${value['qty']}`));
     $('#tbody').empty();
-    console.log(obj);
+    // console.log(obj);
     if (obj.length==0) {
         $('#tbody').append('<tr><th>Empty</th></tr>')
     } else {
@@ -42,12 +42,14 @@ $('#dropdown-toggle').click(function(){
 
 $('#buy').click(function(){
     title = $('#title').val();
-    price = $('#price').val();
+    price = $('input[name="price"]:checked').val();
     number = $('#number').val();
     id = $('#buy').val();
+    options = $('#'+price).val();
+    console.log(options);
     $.ajax({
         url: '/categories/good/addtocart/'+id+'',
-        data: {title:title,price:price,number:number},
+        data: {title:title,price:price,number:number,options:options},
         method: 'POST'
     });
     return false;

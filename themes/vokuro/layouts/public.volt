@@ -6,7 +6,7 @@
 <nav class="navbar mainmenu">
     {{ link_to(null, 'class': 'logo', 'Vökuró') }}
     <div class="justify-content">
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="navbar" id="navbarSupportedContent">
         <ul class="nav me-auto mb-2 mb-lg-0">
             {%- for key, value in menus %}
                 {% if value == dispatcher.getControllerName() %}
@@ -20,9 +20,9 @@
             <li class="nav-item"><a class="nav-link" href="/cart">Cart</a></li>
             <li class="nav-item"><a class="nav-link dropdown mr-1 dropdown-toggle" id="dropdown-toggle" href="javascript;"></a></li>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuReference">
-                <div class="row">
+                <!-- <div class="row"> -->
                     <li>
-                        <table class="table table-dark table-striped table-bordered">
+                        <table class="table table-dark table-striped table-bordered align-middle text-center">
                             <thead>
                                 <tr>
                                     <th scope="col">Name</th>
@@ -34,7 +34,7 @@
                             </tbody>
                         </table>
                     </li>
-                </div>
+                <!-- </div> -->
             </ul>
         </ul>
     </div>
