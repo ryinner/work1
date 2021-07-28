@@ -8,12 +8,14 @@ use Vokuro\Models\Goods;
 use Vokuro\Models\Parametrs;
 use Vokuro\Models\Parametrsgoods;
 use PDO;
-use Vokuro\Models\Prices;
 
 class CategoriesController extends ControllerBase
 {
     public function indexAction() {
         // Страница отладки и тестирования
+        $id = 1;
+        $filter = Parametrs::find('id_cat_par='.$id);
+        var_dump($filter->toArray());
         // Через подзапрос
         // $id = 1;
 
@@ -132,6 +134,7 @@ class CategoriesController extends ControllerBase
         $this->view->setVar('logged_in', is_array($this->auth->getIdentity()));
         $this->view->setTemplateBefore('public');
         $this->view->categories = Categories::find($id);
+        $this->view->filter = Parametrs::find('id_cat_par='.$id);
     }
 
     public function filter($id, array $brands = null, $min = null, $max = null, array $types = null, array $params = null)

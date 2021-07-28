@@ -81,4 +81,15 @@ $('#clear').click(function(){
     return false;
 });
 
-
+$(function(){
+    $('.ui-slider9').slider({
+        range: true,
+        min: 1,
+        max: 1000,
+        values: ['1', '1000'],
+        slide: function(event, ui) {
+            $('#min').val(ui.values[0]);
+            $('#max').val(ui.values[1]);
+        }
+    });
+});

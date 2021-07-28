@@ -8,67 +8,31 @@
                 <!-- widget -->
                 <div class="widget">
                     <h6>Price</h6>
-                    <input type="range" class="form-range" min="0" max="5" step="0.5" id="customRange3">
-                    <div class="d-flex justify-content-between"> <small class="text-muted">$20</small> <small class="text-muted">$100</small> </div>
+                    <div class="row">
+                    <div class="ui-slider9"></div> 
+                        <div class="col-6"><input type="text" id="min" value="1" class="form-control mt-3"></div>
+                        <div class="col-6"><input type="text" id="max" value="1000" class="form-control mt-3"></div>
+                    </div>
                 </div>
                 <!-- /.widget -->
-
-                <a href="catalog_grid_sidebar_2.html" class="btn btn-default btn-sm">Filter</a>
             
                 <!-- widget -->
                 <div class="widget">
-                    <h6>Product Type</h6>
-                    <ul>
-                        <li class="checkbox">
-                            <label>
-                                <input type="checkbox">
-                                Contemporary
-                            </label>
-                        </li>
-                        <li class="checkbox">
-                            <label>
-                                <input type="checkbox">
-                                Plastic
-                            </label>
-                        </li>
-                        <li class="checkbox">
-                            <label>
-                                <input type="checkbox">
-                                Outdoor
-                            </label>
-                        </li>
-                        <li class="checkbox">
-                            <label>
-                                <input type="checkbox">
-                                Industrial Metal
-                            </label>
-                        </li>
-                        <li class="checkbox">
-                            <label>
-                                <input type="checkbox">
-                                Contemporary Plastic
-                            </label>
-                        </li>
-                        <li class="checkbox">
-                            <label>
-                                <input type="checkbox">
-                                Contemporary Wood
-                            </label>
-                        </li>
-                        <li class="checkbox">
-                            <label>
-                                <input type="checkbox">
-                                Farmhouse
-                            </label>
-                        </li>
-                        <li class="checkbox">
-                            <label>
-                                <input type="checkbox">
-                                Lloyd Loom
-                            </label>
-                        </li>
-                    </ul>
+                    {% for param in filter %}
+                        <h6>{{ param.name_par }}</h6>
+                        <ul>
+                            {% for parametrsgoods in param.parametrsgoods %}
+                            <li class="checkbox">
+                                <label>
+                                    <input type="checkbox">
+                                    <span class="price"> {{ parametrsgoods.value_pg }} </span>
+                                </label>
+                            </li>   
+                            {% endfor %}
+                        </ul>
+                    {% endfor %}
                 </div>
+                <a href="javascript;" class="btn btn-default btn-sm">Filter</a>
             </div> 
             <div class="col">
                 <div class="row">

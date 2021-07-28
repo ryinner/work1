@@ -5,6 +5,7 @@ namespace Vokuro\Models;
 
 use Phalcon\Mvc\Model;
 use Vokuro\Models\Categories;
+use Vokuro\Models\Parametrsgoods;
 
 class Parametrs extends Model
 {
@@ -12,10 +13,14 @@ class Parametrs extends Model
     public $name_par;
     public $id_cat_par;
 
-    public function initializeinia()
+    public function initialize()
     {
         $this->belongsTo('id_cat_par',Categories::class,'id',[
             'alias' => 'categories'
+        ]);
+
+        $this->hasMany('id_par',Parametrsgoods::class,'id_par_pg',[
+            'alias' =>  'parametrsgoods'
         ]);
     }
 }

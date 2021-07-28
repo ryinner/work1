@@ -13,7 +13,7 @@ class Parametrsgoods extends Model
     public $value_pg;
     public $id_par_pg;
 
-    public function initializeinia()
+    public function initialize()
     {
         $this->belongsTo('id_good_pg',Goods::class,'id_goods',[
             'alias' =>  'goods'
