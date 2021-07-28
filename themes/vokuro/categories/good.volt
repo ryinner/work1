@@ -44,7 +44,7 @@
                              {% for item in param %}
                                  <tr>
                                     <th>{{item.name_par}}:</th>
-                                    <td>{{item.value_pg}}</td>
+                                    <td>{{item.val_pv}}</td>
                                 </tr>
                             {% endfor %}
                     </table>

@@ -6,6 +6,7 @@ namespace Vokuro\Models;
 use Phalcon\Mvc\Model;
 use Vokuro\Models\Categories;
 use Vokuro\Models\Parametrsgoods;
+use Vokuro\Models\Parametrsvalues;
 
 class Parametrs extends Model
 {
@@ -21,6 +22,10 @@ class Parametrs extends Model
 
         $this->hasMany('id_par',Parametrsgoods::class,'id_par_pg',[
             'alias' =>  'parametrsgoods'
+        ]);
+
+        $this->hasMany('id_par',Parametrsvalues::class,'id_par_pv',[
+            'alias' =>  'parametrsvalues'
         ]);
     }
 }

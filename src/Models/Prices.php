@@ -17,6 +17,7 @@ use Vokuro\Models\Goods;
 
 class Prices extends Model
 {
+    public $id_prices;
     public $id_good_prices;
     public $value_prices;
 

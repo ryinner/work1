@@ -8,6 +8,7 @@ use Vokuro\Models\Goods;
 use Vokuro\Models\Parametrs;
 use Vokuro\Models\Parametrsgoods;
 use PDO;
+use Vokuro\Models\Parametrsvalues;
 
 class CategoriesController extends ControllerBase
 {
@@ -15,7 +16,9 @@ class CategoriesController extends ControllerBase
         // Страница отладки и тестирования
         $id = 1;
         $filter = Parametrs::find('id_cat_par='.$id);
-        var_dump($filter->toArray());
+        var_dump($filter);
+        echo "<pre>";
+        var_dump(array_unique($filter->toArray()));
         // Через подзапрос
         // $id = 1;
 
@@ -185,10 +188,12 @@ class CategoriesController extends ControllerBase
         $this->view->brand = Goods::findFirst($id)->brands;
         // $this->view->prices = Goods::find($id)->prices;
         $param=$this->modelsManager->createBuilder()
-        ->columns("pg.value_pg,p.name_par")
+        ->columns("v.val_pv,p.name_par")
         ->from(['pg' => Parametrsgoods::class])
         ->join(Parametrs::class,
         'pg.id_par_pg = p.id_par','p','LEFT')
+        ->join(Parametrsvalues::class,
+        'v.id_pv=pg.id_par_pg','v','LEFT')
         ->where("id_good_pg= :id:",["id"=>$id],["id"=>PDO::PARAM_INT])
         ->getQuery()
         ->execute();

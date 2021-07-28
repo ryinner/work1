@@ -21,11 +21,11 @@
                     {% for param in filter %}
                         <h6>{{ param.name_par }}</h6>
                         <ul>
-                            {% for parametrsgoods in param.parametrsgoods %}
+                            {% for parametrsgoods in param.parametrsvalues %}
                             <li class="checkbox">
                                 <label>
                                     <input type="checkbox">
-                                    <span class="price"> {{ parametrsgoods.value_pg }} </span>
+                                    <span class="price"> {{ parametrsgoods.val_pv }} </span>
                                 </label>
                             </li>   
                             {% endfor %}
