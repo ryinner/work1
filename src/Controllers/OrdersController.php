@@ -17,7 +17,6 @@ use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 use Vokuro\Models\Goodsinorders;
 use Vokuro\Models\Orders;
-use Vokuro\Plugins\Mail\Mail;
 
 class OrdersController extends ControllerBase
 {
@@ -46,7 +45,7 @@ class OrdersController extends ControllerBase
             $order_id = Orders::maximum([
                 "column" => "id_orders"
             ]);
-            $to = $adress;
+
             $subject = "Vokuro store";
             $message = "Hello, $name. Your order is:<br>";
             foreach($items as $value) {
@@ -62,8 +61,7 @@ class OrdersController extends ControllerBase
                 $message .= "$count $goods_name for $goods_price $<br>";
                 $goodsinorders->save();
             }
-            // $message = wordwrap($message, 70, "\r\n");
-            var_dump($message);
+
             $mail = new PHPMailer(true);
 
             try {
