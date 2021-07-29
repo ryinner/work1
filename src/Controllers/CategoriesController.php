@@ -8,83 +8,67 @@ use Vokuro\Models\Goods;
 use Vokuro\Models\Parametrs;
 use Vokuro\Models\Parametrsgoods;
 use PDO;
+use Vokuro\Models\Brands;
 use Vokuro\Models\Parametrsvalues;
 
 class CategoriesController extends ControllerBase
 {
     public function indexAction() {
         // Страница отладки и тестирования
+            // Через подзапрос
         $id = 1;
-        $filter = Parametrs::find('id_cat_par='.$id);
-        var_dump($filter);
-        echo "<pre>";
-        var_dump(array_unique($filter->toArray()));
-        // Через подзапрос
-        // $id = 1;
 
-        // $min = 1;
-        // $max = 500;
+        $min = 1;
+        $max = 500;
 
-        // $brands[] = 1;
-        // $brands[] = 2;
+        $brands[] = 1;
+        $brands[] = 2;
 
-        // $types[] = "Material";
-        // $types[] = "Size";
+        $types[] = 1;
+        $types[] = 2;
 
-        // $params[] = "Wood";
-        // $params[] = "Stone";
-        // $params[] = "S";
-        // $params[] = "M";
+        $params[] = 3;
+        $params[] = 4;
+        $params[] = 1;
+        $params[] = 2;
 
-        // $in = "";
-        // $placeholders = ["id"=>$id, "min"=>$min, "max"=>$max];
-        // $sql ='SELECT g.id_goods, g.title_goods, g.photo_goods FROM goods as g 
-        // JOIN prices p ON g.id_goods = p.id_good_prices
-        // WHERE g.id_cat_goods=:id AND p.value_prices BETWEEN :min AND :max ';
+        $in = "";
+        $placeholders = ["id"=>$id, "min"=>$min, "max"=>$max];
+        $sql ='SELECT g.id_goods, g.title_goods, g.photo_goods FROM goods as g 
+        JOIN prices p ON g.id_goods = p.id_good_prices
+        WHERE g.id_cat_goods=:id AND p.value_prices BETWEEN :min AND :max ';
 
-        // if ($brands !== null) {
-        //     $in = "";
-        //     foreach ($brands as $value) {
-        //         $in .= ':brand'.$value.',';
-        //         $placeholders['brand'.$value] = $value;
-        //     }
-        //     $in = trim($in,',');
+        if ($brands !== null) {
+            $in = "";
+            foreach ($brands as $value) {
+                $in .= ':brand'.$value.',';
+                $placeholders['brand'.$value] = $value;
+            }
+            $in = trim($in,',');
             
-        //     $sql .= 'AND g.id_brands_goods IN ('.$in.')';
-        // }
+            $sql .= 'AND g.id_brands_goods IN ('.$in.')';
+        }
 
-        // if ($params !== null) {
-        //     $in = "";
-        //     foreach ($params as $value) {
-        //         $in .= ':'.$value.',';
-        //         $placeholders[$value] = $value;
-        //     }
-        //     $in = trim($in,',');
-        //     $placeholders['count'] = count($types);
+        if ($params !== null) {
+            $in = "";
+            foreach ($params as $value) {
+                $in .= ':param'.$value.',';
+                $placeholders['param'.$value] = $value;
+            }
+            $in = trim($in,',');
+            $placeholders['count'] = count($types);
 
-        //     $sql .= 'AND g.id_goods IN 
-        //     (SELECT goods.id_goods FROM parametrsgoods 
-        //     INNER JOIN goods ON goods.id_goods = parametrsgoods.id_good_pg 
-        //     WHERE parametrsgoods.value_pg IN ('.$in.')
-        //     GROUP BY parametrsgoods.id_good_pg HAVING COUNT(parametrsgoods.id_good_pg)=:count)';
-        // }
+            $sql .= 'AND g.id_goods IN 
+            (SELECT goods.id_goods FROM parametrsgoods 
+            INNER JOIN goods ON goods.id_goods = parametrsgoods.id_good_pg 
+            WHERE parametrsgoods.id_val_pg IN ('.$in.')
+            GROUP BY parametrsgoods.id_good_pg HAVING COUNT(parametrsgoods.id_good_pg)=:count)';
+        }
 
-        // $sql .= 'GROUP BY g.id_goods';
-        // $sql ='SELECT g.id_goods, g.title_goods, g.photo_goods FROM goods as g 
-        // JOIN prices p ON g.id_goods = p.id_good_prices
-        // WHERE g.id_cat_goods=:id   AND p.value_prices BETWEEN :min AND :max AND g.id_brands_goods = :brands/
-        // AND g.id_goods IN 
-        // (SELECT goods.id_goods FROM parametrsgoods 
-        // INNER JOIN goods ON goods.id_goods = parametrsgoods.id_good_pg 
-        // WHERE parametrsgoods.value_pg IN ('.$in.')
-        // GROUP BY parametrsgoods.id_good_pg HAVING COUNT(parametrsgoods.id_good_pg)=:count)/
-        // GROUP BY g.id_goods';
+        $sql .= 'GROUP BY g.id_goods';
+        $goods = $this->db->fetchAll($sql,2,$placeholders);
+        var_dump($goods);
         
-        // $query = $this->db->fetchAll($sql,2,$placeholders);
-
-        // echo '<pre>';
-        // var_dump($query);
-
             // Через Билдер работает, но узнать стоит ли использовать с учетом необходимости сравнения перебором
         // $builder = $this->modelsManager->createBuilder()
         // ->columns("g.id_goods, g.title_goods, g.photo_goods")
@@ -136,12 +120,20 @@ class CategoriesController extends ControllerBase
     {
         $this->view->setVar('logged_in', is_array($this->auth->getIdentity()));
         $this->view->setTemplateBefore('public');
-        $this->view->categories = Categories::find($id);
+        $this->view->goods = Goods::find('id_cat_goods='.$id);
         $this->view->filter = Parametrs::find('id_cat_par='.$id);
+        $this->view->brands = Brands::find();
     }
 
-    public function filter($id, array $brands = null, $min = null, $max = null, array $types = null, array $params = null)
+    public function filterAction()
     {
+        $id = $this->request->getPost('id');
+        $min = $this->request->getPost('min');
+        $max = $this->request->getPost('max');
+        $brands = $this->request->getPost('brands');
+        $types = $this->request->getPost('types');
+        $params = $this->request->getPost('params');
+
         $in = "";
         $placeholders = ["id"=>$id, "min"=>$min, "max"=>$max];
         $sql ='SELECT g.id_goods, g.title_goods, g.photo_goods FROM goods as g 
@@ -162,8 +154,8 @@ class CategoriesController extends ControllerBase
         if ($params !== null) {
             $in = "";
             foreach ($params as $value) {
-                $in .= ':'.$value.',';
-                $placeholders[$value] = $value;
+                $in .= ':param'.$value.',';
+                $placeholders['param'.$value] = $value;
             }
             $in = trim($in,',');
             $placeholders['count'] = count($types);
@@ -171,12 +163,13 @@ class CategoriesController extends ControllerBase
             $sql .= 'AND g.id_goods IN 
             (SELECT goods.id_goods FROM parametrsgoods 
             INNER JOIN goods ON goods.id_goods = parametrsgoods.id_good_pg 
-            WHERE parametrsgoods.value_pg IN ('.$in.')
+            WHERE parametrsgoods.id_val_pg IN ('.$in.')
             GROUP BY parametrsgoods.id_good_pg HAVING COUNT(parametrsgoods.id_good_pg)=:count)';
         }
 
         $sql .= 'GROUP BY g.id_goods';
-        $this->view->categories = $this->db->fetchAll($sql,2,$placeholders);
+        $goods = $this->db->fetchAll($sql,2,$placeholders);
+        return json_encode($goods);
     }
 
     public function goodAction($id)

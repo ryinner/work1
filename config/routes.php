@@ -51,3 +51,8 @@ $router->add('/cart/get',[
     'controller' => 'cart',
     'action'     => 'get' 
 ]);
+
+$router->add('/categories/filter/',[
+    'controller' => 'categories',
+    'action'     => 'filter'
+]);

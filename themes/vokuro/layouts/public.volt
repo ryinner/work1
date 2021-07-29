@@ -1,6 +1,7 @@
 {%- set menus = [
     'Home': 'index',
-    'About': 'about'
+    'About': 'about',
+    'Cart': 'cart'
 ] -%}
 <div class="container">
 <nav class="navbar mainmenu">
@@ -17,7 +18,7 @@
                 <li class="nav-item">{{ link_to(value, 'class': 'nav-link', key) }}</li>
                 {% endif %}
             {%- endfor -%}
-            <li class="nav-item"><a class="nav-link" href="/cart">Cart</a></li>
+            <!-- <li class="nav-item"><a class="nav-link" href="/cart">Cart</a></li> -->
             <li class="nav-item"><a class="nav-link dropdown mr-1 dropdown-toggle" id="dropdown-toggle" href="javascript;"></a></li>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuReference">
                 <!-- <div class="row"> -->
