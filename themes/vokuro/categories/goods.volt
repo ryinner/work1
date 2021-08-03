@@ -46,11 +46,11 @@
                 </div>
                 <a href="" id="filter" class="btn btn-default btn-sm">Filter</a>
             </div> 
+            <!-- /.widget -->
             <div class="col">
                 <div class="row">
                     <div class="row text-center" id="goods">
-                        {# {% for category in categories %} #}
-                            {% for item in goods %}
+                            {% for item in page.items %}
                                     <div class="col-md-3 col-sm-6 product">
                                         <div class="product-img">
                                             <a href="good/{{ item.id_goods }}">
@@ -60,9 +60,9 @@
                                         </div>
                                         <h6><a href="good/{{ item.id_goods }}">{{ item.title_goods }}</a></h6>
                                     </div>
-                            {% endfor %}
-                        {# {% endfor %} #}
+                            {% endfor %} 
                     </div> 
+                {% block paginators %}{% endblock %}
             </div>
         </div>
     </div>       
